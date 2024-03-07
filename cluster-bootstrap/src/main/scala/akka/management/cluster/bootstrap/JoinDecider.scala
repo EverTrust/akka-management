@@ -6,7 +6,7 @@ package akka.management.cluster.bootstrap
 
 import java.time.LocalDateTime
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.concurrent.Future
 import akka.actor.Address
 import akka.discovery.ServiceDiscovery.ResolvedTarget

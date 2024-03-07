@@ -34,7 +34,6 @@ object Common extends AutoPlugin {
       headerLicense := Some(
           HeaderLicense.Custom(s"Copyright (C) 2017-$currentYear Lightbend Inc. <https://www.lightbend.com>")),
       crossScalaVersions := Dependencies.CrossScalaVersions,
-      projectInfoVersion := (if (isSnapshot.value) "snapshot" else version.value),
       crossVersion := CrossVersion.binary,
       scalacOptions ++= {
         var scalacOptionsBase = Seq(
@@ -75,7 +74,6 @@ object Common extends AutoPlugin {
           "-doc-canonical-base-url",
           "https://doc.akka.io/api/akka-management/current/"
         ),
-      autoAPIMappings := true,
       // show full stack traces and test case durations
       Test / testOptions += Tests.Argument("-oDF"),
       // -v Log "test run started" / "test started" / "test run finished" events on log level "info" instead of "debug".

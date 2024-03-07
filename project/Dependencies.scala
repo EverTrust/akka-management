@@ -4,7 +4,7 @@ import Keys._
 object Dependencies {
 
   val Scala212 = "2.12.16"
-  val Scala213 = "2.13.8"
+  val Scala213 = "2.13.13"
   val CrossScalaVersions = Seq(Dependencies.Scala212, Dependencies.Scala213)
 
   // Align the versions in integration-test/kubernetes-api-java/pom.xml
