@@ -6,9 +6,7 @@ package akka.management.cluster.bootstrap.internal
 
 import java.time.LocalDateTime
 import java.util.concurrent.ThreadLocalRandom
-
 import scala.collection.immutable
-
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Address
@@ -18,7 +16,7 @@ import akka.actor.Status.Failure
 import akka.actor.Timers
 import akka.annotation.InternalApi
 import akka.cluster.Cluster
-import akka.discovery.{ Lookup, ServiceDiscovery }
+import akka.discovery.{Lookup, ServiceDiscovery}
 import akka.discovery.ServiceDiscovery.ResolvedTarget
 import akka.http.scaladsl.model.Uri
 import akka.management.cluster.bootstrap.ClusterBootstrapSettings
@@ -30,11 +28,13 @@ import akka.management.cluster.bootstrap.KeepProbing
 import akka.management.cluster.bootstrap.SeedNodesInformation
 import akka.management.cluster.bootstrap.SeedNodesObservation
 import akka.pattern.pipe
+
 import scala.concurrent.duration._
 import scala.util.Try
-
 import akka.event.Logging
 import akka.management.cluster.bootstrap.BootstrapLogMarker
+
+import scala.concurrent.ExecutionContextExecutor
 
 /** INTERNAL API */
 @InternalApi
@@ -139,7 +139,7 @@ private[akka] class BootstrapCoordinator(
   import BootstrapCoordinator.Protocol._
   import BootstrapCoordinator._
 
-  implicit private val ec = context.dispatcher
+  implicit private val ec: ExecutionContextExecutor = context.dispatcher
   private val log = Logging.withMarker(this)
   private val cluster = Cluster(context.system)
   private val DiscoverTimerKey = "resolve-key"

@@ -7,15 +7,9 @@ package akka.management.cluster.bootstrap.internal
 import java.time.LocalDateTime
 import java.util.concurrent.ThreadLocalRandom
 import java.util.concurrent.TimeoutException
-
 import scala.concurrent.Future
 import scala.concurrent.duration._
-import akka.actor.Actor
-import akka.actor.ActorLogging
-import akka.actor.DeadLetterSuppression
-import akka.actor.Props
-import akka.actor.Status
-import akka.actor.Timers
+import akka.actor.{Actor, ActorLogging, ActorSystem, DeadLetterSuppression, Props, Status, Timers}
 import akka.annotation.InternalApi
 import akka.cluster.Cluster
 import akka.discovery.ServiceDiscovery.ResolvedTarget
@@ -80,7 +74,7 @@ private[bootstrap] class HttpContactPointBootstrap(
     )
   }
 
-  private implicit val sys = context.system
+  private implicit val sys: ActorSystem = context.system
   private val http = Http()
   private val connectionPoolWithoutRetries = ConnectionPoolSettings(context.system).withMaxRetries(0)
   import context.dispatcher
